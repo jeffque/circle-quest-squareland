@@ -27,3 +27,7 @@ def direction2module(coordenada, modulo_desejado):
         return [x * fator for x in coordenada]
     except ZeroDivisionError:
         return [0,0]
+
+
+def direction_module_mutiply(direcao, fator):
+    return [x * fator for x in direcao]
