@@ -20,11 +20,11 @@ def coords_soma(coord_a, coord_b):
     return delta
 
 
-def direction2module(coordenada, modulo_desejado):
-    modulo_atual = pitagoras(coordenada)
+def direction2module(direcao, modulo_desejado):
+    modulo_atual = pitagoras(direcao)
     try:
         fator = modulo_desejado/modulo_atual
-        return [x * fator for x in coordenada]
+        return [x * fator for x in direcao]
     except ZeroDivisionError:
         return [0,0]
 
