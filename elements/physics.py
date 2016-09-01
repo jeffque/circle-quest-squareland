@@ -40,3 +40,16 @@ class Retangulo(Fallable):
         print('''posicao %s
 velocidade %s
 ''' % (self.posicao, self.velocidade))
+
+
+class Circulo(Fallable):
+    def __init__(self, color=(255, 255, 255), raio=5, posicao=(0, 0), velocidade=(0, 0)):
+        Fallable.__init__(self, posicao, velocidade)
+        self.raio = raio
+        self.color = color
+
+    def render(self, screen):
+        pygame.draw.circle(screen, self.color, [int(ordenada) for ordenada in self.posicao], self.raio)
+        print('''posicao %s
+velocidade %s
+''' % (self.posicao, self.velocidade))
