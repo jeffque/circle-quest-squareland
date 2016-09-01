@@ -1,10 +1,14 @@
+from .physics import Circulo, Retangulo
+
+
 class GameComponentError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
-class Platform:
+class Platform(Retangulo):
     velocidade_maxima = 10 #pixel por segundo no módulo do vetor
-    def __init__(self, width, height, *positions):
+    def __init__(self, width, height, color=(255, 255, 255), *positions):
+        Retangulo.__init__(self, color, (width, height), positions[0])
         if (len(positions) == 0):
             print('erro, forneça pela menos uma posição para a plataforma')
             raise GameComponentError('forneça pela menos uma posição para a plataforma')
