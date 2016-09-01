@@ -1,7 +1,7 @@
 import os, sys
 import pygame
 from pygame.locals import *
-from elements.physics import Retangulo
+from elements.physics import Retangulo, Circulo
 
 if not pygame.font: print('Warning, fonts disabled')
 if not pygame.mixer: print('Warning, sound disabled')
@@ -15,13 +15,16 @@ class SquareLandGame:
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.elementos_fisica = []
-        self.ret = Retangulo()
-        self.ret.falling = True
-        self.elementos_fisica.append(self.ret)
 
 
     def create_level(self, level):
-        pass
+        self.elementos_fisica.clear()
+        self.personagem = Circulo(posicao=level.spawn_point())
+        self.personagem.falling = True
+        self.elementos_fisica.append(self.personagem)
+        for plataforma in level.plataformas():
+            self.elementos_fisica.append(plataforma)
+
 
     def run_game(self):
         tique_taque = pygame.time.Clock()
