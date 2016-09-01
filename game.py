@@ -14,8 +14,10 @@ class SquareLandGame:
         self.height = SquareLandGame.height
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
+        self.elementos_fisica = []
         self.ret = Retangulo()
         self.ret.falling = True
+        self.elementos_fisica.append(self.ret)
 
 
     def create_level(self, level):
@@ -30,11 +32,13 @@ class SquareLandGame:
             acc += delta_seconds
             tique_taque.tick(100)
 
-            self.ret.cair(delta_seconds)
-            self.ret.movimento(delta_seconds)
+            for elemento_fisico in self.elementos_fisica:
+                elemento_fisico.cair(delta_seconds)
+                elemento_fisico.movimento(delta_seconds)
+                elemento_fisico.render(self.screen)
             print('intervalo em segunds %f' % delta_seconds)
             print('tempo desde o começo em segunds %f' % acc)
-            self.ret.render(self.screen)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
