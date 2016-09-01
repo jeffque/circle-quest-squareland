@@ -2,8 +2,8 @@ import pygame
 from .geometry import coords_soma, direction_module_mutiply
 
 class Fallable:
-    gravity = 10 # pixel por segundo ao quadrado
-    maxima_vertical = 10000000000000000 # pixel por segundo
+    gravity = 100 # pixel por segundo ao quadrado
+    maxima_vertical = 1000 # pixel por segundo
 
 
     def __init__(self, posicao = (0,0), velocidade = (0,0)):
