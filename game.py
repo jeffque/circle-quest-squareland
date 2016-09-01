@@ -18,6 +18,9 @@ class SquareLandGame:
         self.ret.falling = True
 
 
+    def create_level(self, level):
+        pass
+
     def run_game(self):
         tique_taque = pygame.time.Clock()
         acc = 0
