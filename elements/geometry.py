@@ -13,6 +13,13 @@ def coords_delta(coord_a, coord_b):
     return delta
 
 
+def coords_soma(coord_a, coord_b):
+    delta = []
+    delta.append(coord_a[0] + coord_b[0])
+    delta.append(coord_a[1] + coord_b[1])
+    return delta
+
+
 def direction2module(coordenada, modulo_desejado):
     modulo_atual = pitagoras(coordenada)
     try:
