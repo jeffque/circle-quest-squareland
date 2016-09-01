@@ -27,3 +27,11 @@ class Platform(Retangulo):
 class Level:
     def __init__(self):
         pass
+
+
+    def spawn_point(self):
+        return [100, 100]
+
+
+    def plataformas(self):
+        return [Platform(100, 10, (255, 255, 255), [50, 300])]
