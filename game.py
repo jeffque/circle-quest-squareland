@@ -22,7 +22,9 @@ class SquareLandGame:
         self.personagem = Circulo(posicao=level.spawn_point())
         self.personagem.falling = True
         self.elementos_fisica.append(self.personagem)
+        self.plataformas = []
         for plataforma in level.plataformas():
+            self.plataformas.append(plataforma)
             self.elementos_fisica.append(plataforma)
 
 
@@ -34,6 +36,10 @@ class SquareLandGame:
             delta_seconds = (tique_taque.get_time()) / 1000
             acc += delta_seconds
             tique_taque.tick(100)
+
+            for plataforma in self.plataformas:
+                if self.personagem.colisao(plataforma):
+                    self.personagem.falling = False
 
             for elemento_fisico in self.elementos_fisica:
                 elemento_fisico.cair(delta_seconds)
