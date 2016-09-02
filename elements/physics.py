@@ -25,7 +25,6 @@ class Fallable:
 
 
     def movimento(self, delta_time):
-        pos_old = self.posicao
         delta_deslocamento = direction_module_mutiply(self.velocidade_absoluta(), delta_time)
         self.posicao = coords_soma(self.posicao, delta_deslocamento)
 
