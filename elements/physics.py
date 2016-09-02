@@ -46,3 +46,7 @@ class Circulo(Fallable):
 
     def render(self, screen):
         pygame.draw.circle(screen, self.color, [int(ordenada) for ordenada in self.posicao], self.raio)
+
+
+    def colisao(self, plataforma):
+        return plataforma.posicao[0] <= self.posicao[0] <= plataforma.posicao[0] + plataforma.tamanho[0] and abs(plataforma.posicao[1] - self.posicao[1]) <= self.raio
