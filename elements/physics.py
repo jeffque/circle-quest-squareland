@@ -10,12 +10,11 @@ class Fallable:
         self.posicao = [x for x in posicao] # em pixels
         self.velocidade = [x for x in velocidade] # em pixels por segundo
         self.falling = False
+        self.sticked_to = None
 
 
     def cair(self, delta_time):
-        if not self.falling:
-            self.velocidade[1] = 0
-        elif self.velocidade[1] <= Fallable.maxima_vertical:
+        if self.falling and self.velocidade[1] <= Fallable.maxima_vertical:
             delta_velocidade = delta_time * Fallable.gravity
             velocidade_y_final = min(self.velocidade[1] + delta_velocidade, Fallable.maxima_vertical)
             self.velocidade[1] = velocidade_y_final
@@ -24,6 +23,9 @@ class Fallable:
     def movimento(self, delta_time):
         pos_old = self.posicao
         delta_deslocamento = direction_module_mutiply(self.velocidade, delta_time)
+        if self.sticked_to:
+            delta_deslocamento_sticked = direction_module_mutiply(self.sticked_to.velocidade, delta_time)
+            delta_deslocamento = coords_soma(delta_deslocamento_sticked, delta_deslocamento)
         self.posicao = coords_soma(self.posicao, delta_deslocamento)
 
 
@@ -50,4 +52,12 @@ class Circulo(Fallable):
 
 
     def colisao(self, plataforma):
-        return plataforma.posicao[0] <= self.posicao[0] <= plataforma.posicao[0] + plataforma.tamanho[0] and abs(plataforma.posicao[1] - self.posicao[1]) <= self.raio
+        if self.sticked_to == plataforma:
+            return False
+        if plataforma.posicao[0] <= self.posicao[0] <= plataforma.posicao[0] + plataforma.tamanho[0] and abs(plataforma.posicao[1] - self.posicao[1]) <= self.raio:
+            self.sticked_to = plataforma
+            self.velocidade[1] = 0
+            plataforma.velocidade[0] = 100
+            plataforma.velocidade[1] = -10
+            return True
+        return False
