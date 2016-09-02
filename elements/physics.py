@@ -20,12 +20,13 @@ class Fallable:
             self.velocidade[1] = velocidade_y_final
 
 
+    def velocidade_absoluta(self):
+        return coords_soma(self.velocidade, self.sticked_to.velocidade) if self.sticked_to else self.velocidade
+
+
     def movimento(self, delta_time):
         pos_old = self.posicao
-        delta_deslocamento = direction_module_mutiply(self.velocidade, delta_time)
-        if self.sticked_to:
-            delta_deslocamento_sticked = direction_module_mutiply(self.sticked_to.velocidade, delta_time)
-            delta_deslocamento = coords_soma(delta_deslocamento_sticked, delta_deslocamento)
+        delta_deslocamento = direction_module_mutiply(self.velocidade_absoluta(), delta_time)
         self.posicao = coords_soma(self.posicao, delta_deslocamento)
 
 
