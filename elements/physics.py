@@ -13,6 +13,12 @@ class Fallable:
         self.sticked_to = None
 
 
+    def pular(self, intensidade):
+        self.velocidade[1] = -abs(intensidade)
+        self.sticked_to = None
+        self.falling = True
+
+
     def cair(self, delta_time):
         if self.falling and self.velocidade[1] <= Fallable.maxima_vertical:
             delta_velocidade = delta_time * Fallable.gravity
