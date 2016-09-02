@@ -20,6 +20,14 @@ def coords_soma(coord_a, coord_b):
     return delta
 
 
+def distancia_quad(ponto_a, ponto_b):
+    return pitagoras_quad(coords_delta(ponto_a, ponto_b))
+
+
+def distancia(ponto_a, ponto_b):
+    return distancia_quad(ponto_a, ponto_b)**0.5
+
+
 def direction2module(direcao, modulo_desejado):
     modulo_atual = pitagoras(direcao)
     try:
