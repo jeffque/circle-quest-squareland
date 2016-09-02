@@ -25,7 +25,6 @@ class Fallable:
         pos_old = self.posicao
         delta_deslocamento = direction_module_mutiply(self.velocidade, delta_time)
         self.posicao = coords_soma(self.posicao, delta_deslocamento)
-        print('\tpos old %s\n\tdeslocamento %s\n\tpos nova %s\n\tvelocidade %s\n\ttempo %f' % (pos_old, delta_deslocamento, self.posicao, self.velocidade, delta_time))
 
 
 class Retangulo(Fallable):
@@ -37,9 +36,6 @@ class Retangulo(Fallable):
 
     def render(self, screen):
         pygame.draw.rect(screen, self.color, (self.posicao[0], self.posicao[1], self.tamanho[0], self.tamanho[1]))
-        print('''posicao %s
-velocidade %s
-''' % (self.posicao, self.velocidade))
 
 
 class Circulo(Fallable):
@@ -50,6 +46,3 @@ class Circulo(Fallable):
 
     def render(self, screen):
         pygame.draw.circle(screen, self.color, [int(ordenada) for ordenada in self.posicao], self.raio)
-        print('''posicao %s
-velocidade %s
-''' % (self.posicao, self.velocidade))
