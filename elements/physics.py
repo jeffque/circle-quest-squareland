@@ -14,6 +14,8 @@ class Fallable:
 
 
     def pular(self, intensidade):
+        if self.falling:
+            return
         self.velocidade[1] = -abs(intensidade)
         self.sticked_to = None
         self.falling = True
