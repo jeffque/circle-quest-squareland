@@ -1,5 +1,5 @@
 from .physics import Circulo, Retangulo
-
+from .geometry import coords_delta, direction2module, distancia_quad
 
 class GameComponentError(Exception):
     def __init__(self, msg):
@@ -16,13 +16,30 @@ class Platform(Retangulo):
         self.position = [positions[0][0], positions[0][1]]
         self.movable = len(positions) > 1
         self.pos_atual = 0
-        self.direcao_mudou = True
         self.definir_vetor_direcao()
 
 
     def definir_vetor_direcao(self):
-        if (self.direcao_mudou):
-            pass
+        if self.movable:
+            next_pos = self.next_pos()
+            self.direcao_desejada = coords_delta(self.positions[next_pos], self.posicao)
+            self.velocidade = direction2module(self.direcao_desejada, 100)
+
+
+    def next_pos(self):
+        print('next pos %d' % (self.pos_atual + 1 if self.pos_atual + 1 < len(self.positions) else 0))
+        return self.pos_atual + 1 if self.pos_atual + 1 < len(self.positions) else 0
+
+
+    def movimento(self, delta_time):
+        Retangulo.movimento(self, delta_time)
+        print('self.velocidade %s' % self.velocidade)
+        print('self positions %s, self next pos %d' % (self.positions, self.next_pos()))
+        dist = distancia_quad(self.posicao, self.positions[self.next_pos()])
+
+        if dist < 1:
+            self.pos_atual = self.next_pos()
+            self.definir_vetor_direcao()
 
 class Level:
     def __init__(self):
