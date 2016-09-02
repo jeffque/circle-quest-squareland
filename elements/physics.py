@@ -13,12 +13,12 @@ class Fallable:
 
 
     def cair(self, delta_time):
-        if (self.falling and self.velocidade[1] <= Fallable.maxima_vertical):
+        if not self.falling:
+            self.velocidade[1] = 0
+        elif self.velocidade[1] <= Fallable.maxima_vertical:
             delta_velocidade = delta_time * Fallable.gravity
             velocidade_y_final = min(self.velocidade[1] + delta_velocidade, Fallable.maxima_vertical)
             self.velocidade[1] = velocidade_y_final
-        else:
-            self.velocidade[1] = 0
 
 
     def movimento(self, delta_time):
