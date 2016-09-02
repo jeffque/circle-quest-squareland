@@ -44,6 +44,7 @@ class Circulo(Fallable):
         self.raio = raio
         self.color = color
 
+
     def render(self, screen):
         pygame.draw.circle(screen, self.color, [int(ordenada) for ordenada in self.posicao], self.raio)
 
