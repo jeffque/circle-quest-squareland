@@ -34,4 +34,4 @@ class Level:
 
 
     def plataformas(self):
-        return [Platform(100, 10, (255, 255, 255), [50, 300])]
+        return [Platform(100, 10, (255, 255, 255), [50, 300], [300, 140])]
