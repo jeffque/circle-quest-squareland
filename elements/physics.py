@@ -63,8 +63,10 @@ class Circulo(Fallable):
         plataforma = self.sticked_to
         if self.sticked_to and not(plataforma.posicao[0] <= self.posicao[0] <= plataforma.posicao[0] + plataforma.tamanho[0] and abs(
                     plataforma.posicao[1] - self.posicao[1]) <= self.raio):
+            velocidade_abs = self.velocidade_absoluta()
             self.sticked_to = None
             self.falling = True
+            self.velocidade = velocidade_abs
 
 
     def colisao(self, plataforma):
