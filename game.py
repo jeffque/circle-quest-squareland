@@ -46,8 +46,6 @@ class SquareLandGame:
                 elemento_fisico.cair(delta_seconds)
                 elemento_fisico.movimento(delta_seconds)
                 elemento_fisico.render(self.screen)
-            print('intervalo em segunds %f' % delta_seconds)
-            print('tempo desde o começo em segunds %f' % acc)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

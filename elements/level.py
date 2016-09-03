@@ -27,14 +27,11 @@ class Platform(Retangulo):
 
 
     def next_pos(self):
-        print('next pos %d' % (self.pos_atual + 1 if self.pos_atual + 1 < len(self.positions) else 0))
         return self.pos_atual + 1 if self.pos_atual + 1 < len(self.positions) else 0
 
 
     def movimento(self, delta_time):
         Retangulo.movimento(self, delta_time)
-        print('self.velocidade %s' % self.velocidade)
-        print('self positions %s, self next pos %d' % (self.positions, self.next_pos()))
         dist = distancia_quad(self.posicao, self.positions[self.next_pos()])
 
         if dist < 5:
