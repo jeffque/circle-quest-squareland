@@ -27,6 +27,26 @@ class SquareLandGame:
             self.plataformas.append(plataforma)
             self.elementos_fisica.append(plataforma)
 
+    def controller(self):
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == KEYDOWN:
+                if (event.key == K_LEFT):
+                    self.personagem.controle(-1)
+                elif (event.key == K_RIGHT):
+                    self.personagem.controle(1)
+                elif (event.key == K_UP):
+                    self.personagem.pular()
+
+            if event.type == KEYUP:
+                if (event.key == K_LEFT):
+                    self.personagem.controle(0)
+                elif (event.key == K_RIGHT):
+                    self.personagem.controle(0)
 
     def run_game(self):
         tique_taque = pygame.time.Clock()
@@ -36,6 +56,8 @@ class SquareLandGame:
             delta_seconds = (tique_taque.get_time()) / 1000
             acc += delta_seconds
             tique_taque.tick(600)
+
+            self.controller()
 
             for plataforma in self.plataformas:
                 if self.personagem.colisao(plataforma):
