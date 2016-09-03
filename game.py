@@ -35,7 +35,7 @@ class SquareLandGame:
             self.screen.fill((0,0,0))
             delta_seconds = (tique_taque.get_time()) / 1000
             acc += delta_seconds
-            tique_taque.tick(100)
+            tique_taque.tick(600)
 
             for plataforma in self.plataformas:
                 if self.personagem.colisao(plataforma):
