@@ -53,6 +53,7 @@ class Circulo(Fallable):
         Fallable.__init__(self, posicao, velocidade)
         self.raio = raio
         self.color = color
+        self.intensidade = 100
 
 
     def render(self, screen):
@@ -77,3 +78,19 @@ class Circulo(Fallable):
             self.velocidade[1] = 0
             return True
         return False
+
+    def pular(self):
+        self.velocidade[1] = -abs(self.intensidade)
+
+    def controle(self, x):
+
+        if(x > 0):
+            self.velocidade[0] = abs(self.intensidade)
+
+        elif(x < 0):
+            self.velocidade[0] = -abs(self.intensidade)
+
+        else:
+            self.velocidade[0] = 0
+            self.sticked_to = None
+            self.falling = True
