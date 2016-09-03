@@ -37,7 +37,7 @@ class Platform(Retangulo):
         print('self positions %s, self next pos %d' % (self.positions, self.next_pos()))
         dist = distancia_quad(self.posicao, self.positions[self.next_pos()])
 
-        if dist < 1:
+        if dist < 5:
             self.pos_atual = self.next_pos()
             self.definir_vetor_direcao()
 
