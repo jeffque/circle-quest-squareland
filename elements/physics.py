@@ -59,6 +59,14 @@ class Circulo(Fallable):
         pygame.draw.circle(screen, self.color, [int(ordenada) for ordenada in self.posicao], self.raio)
 
 
+    def teste_stick(self):
+        plataforma = self.sticked_to
+        if self.sticked_to and not(plataforma.posicao[0] <= self.posicao[0] <= plataforma.posicao[0] + plataforma.tamanho[0] and abs(
+                    plataforma.posicao[1] - self.posicao[1]) <= self.raio):
+            self.sticked_to = None
+            self.falling = True
+
+
     def colisao(self, plataforma):
         if self.sticked_to == plataforma:
             return False

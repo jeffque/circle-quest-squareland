@@ -41,6 +41,7 @@ class SquareLandGame:
                 if self.personagem.colisao(plataforma):
                     self.personagem.falling = False
 
+            self.personagem.teste_stick()
             for elemento_fisico in self.elementos_fisica:
                 elemento_fisico.cair(delta_seconds)
                 elemento_fisico.movimento(delta_seconds)
