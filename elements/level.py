@@ -54,3 +54,13 @@ class Level:
                 Platform(100, 10, (255, 255, 255), [50, 300], [430, 430], [430, 100], [50, 140]),
                 Platform(100, 10, (255, 255, 255), [50, 140], [430, 430], [430, 100], [50, 300]),
                 Platform(100, 10, (255, 255, 255), [200, 200])]
+
+
+maps_level = {}
+maps_level['level0'] = Level()
+
+def level_getter(nome_level):
+    if nome_level in list(maps_level.keys()):
+        return maps_level[nome_level]
+    else:
+        return None
