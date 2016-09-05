@@ -69,6 +69,10 @@ class Level:
                 Platform(100, 10, (255, 255, 255), [200, 200])]
 
 
+    def saidas(self):
+        return [(500, 100, 'level0'), (500, 200, 'level1')]
+
+
 maps_level = {}
 maps_level['level0'] = Level()
 
