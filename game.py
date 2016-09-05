@@ -2,6 +2,7 @@ import os, sys
 import pygame
 from pygame.locals import *
 from elements.physics import Circulo
+from elements.level import level_getter, Saida
 
 if not pygame.font: print('Warning, fonts disabled')
 if not pygame.mixer: print('Warning, sound disabled')
@@ -16,6 +17,7 @@ class SquareLandGame:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.elementos_fisica = []
         self.plataformas = []
+        self.saidas = []
 
 
     def create_level_by_name(self, level_name):
@@ -33,12 +35,17 @@ class SquareLandGame:
         self.personagem.falling = True
         self.elementos_fisica.append(self.personagem)
         self.plataformas.clear()
+        self.saidas.clear()
         for plataforma in level.plataformas():
             self.plataformas.append(plataforma)
             self.elementos_fisica.append(plataforma)
+        for saida in level.saidas():
+            obj_saida = Saida([saida[0], saida[1]], saida[2])
+            self.saidas.append(obj_saida)
+            self.elementos_fisica.append(obj_saida)
+
 
     def controller(self):
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -78,6 +85,10 @@ class SquareLandGame:
                 elemento_fisico.cair(delta_seconds)
                 elemento_fisico.movimento(delta_seconds)
                 elemento_fisico.render(self.screen)
+
+            for saida in self.saidas:
+                if saida.fim_de_fase(self.personagem):
+                    self.create_level_by_name(saida.destino)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
