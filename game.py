@@ -17,6 +17,15 @@ class SquareLandGame:
         self.elementos_fisica = []
 
 
+    def create_level_by_name(self, level_name):
+        level = level_getter(level_name)
+
+        if level:
+            self.create_level(level)
+        else:
+            sys.exit()
+
+
     def create_level(self, level):
         self.elementos_fisica.clear()
         self.personagem = Circulo(posicao=level.spawn_point())
