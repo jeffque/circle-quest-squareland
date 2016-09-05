@@ -15,6 +15,7 @@ class SquareLandGame:
         pygame.init()
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.elementos_fisica = []
+        self.plataformas = []
 
 
     def create_level_by_name(self, level_name):
@@ -31,7 +32,7 @@ class SquareLandGame:
         self.personagem = Circulo(posicao=level.spawn_point())
         self.personagem.falling = True
         self.elementos_fisica.append(self.personagem)
-        self.plataformas = []
+        self.plataformas.clear()
         for plataforma in level.plataformas():
             self.plataformas.append(plataforma)
             self.elementos_fisica.append(plataforma)
