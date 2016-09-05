@@ -1,6 +1,5 @@
 if __name__ == '__main__':
-    from elements.level import Level
     from game import SquareLandGame
     game = SquareLandGame()
-    game.create_level(Level())
+    game.create_level_by_name('level0')
     game.run_game()
