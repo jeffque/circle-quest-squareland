@@ -1,7 +1,7 @@
 import os, sys
 import pygame
 from pygame.locals import *
-from elements.physics import Retangulo, Circulo
+from elements.physics import Circulo
 
 if not pygame.font: print('Warning, fonts disabled')
 if not pygame.mixer: print('Warning, sound disabled')
