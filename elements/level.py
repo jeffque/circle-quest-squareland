@@ -38,6 +38,19 @@ class Platform(Retangulo):
             self.pos_atual = self.next_pos()
             self.definir_vetor_direcao()
 
+
+class Saida(Circulo):
+    def __init__(self, posicao=(0, 0), destino = None ):
+        Circulo.__init__(self, posicao=posicao, color=(255, 0, 0))
+        self.destino = destino
+
+
+    def fim_de_fase(self, personagem):
+        if (self.raio + personagem.raio)**2 >= distancia_quad(self.posicao, personagem.posicao):
+            return True
+        return False
+
+
 class Level:
     def __init__(self):
         pass
