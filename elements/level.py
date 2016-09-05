@@ -5,6 +5,7 @@ class GameComponentError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
+
 class Platform(Retangulo):
     velocidade_maxima = 10 #pixel por segundo no módulo do vetor
     def __init__(self, width, height, color=(255, 255, 255), *positions):
